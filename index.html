@@ -16,6 +16,22 @@
       scroll-behavior: smooth;
     }
 
+    /* Global fixed background for body */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://res.cloudinary.com/dx8d5hlk1/image/upload/v1770902487/neza-dolmo--Icm9zz7O9g-unsplash_exvkvz.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: -2;
+      opacity: 0.3;
+    }
+
     /* Fixed background base */
     .fixed-bg {
       position: relative;
@@ -75,6 +91,23 @@
     section {
       scroll-margin-top: 80px;
     }
+
+    /* Frosted glass effect */
+    .frosted-glass {
+      background: rgba(2, 6, 23, 0.5) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      -moz-backdrop-filter: blur(12px);
+      -ms-backdrop-filter: blur(12px);
+      -o-backdrop-filter: blur(12px);
+    }
+    
+    /* Fallback for browsers without backdrop-filter support */
+    @supports not (backdrop-filter: blur(12px)) {
+      .frosted-glass {
+        background: rgba(2, 6, 23, 0.85) !important;
+      }
+    }
   </style>
 </head>
 
@@ -83,11 +116,16 @@
   <!-- Navigation -->
   <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-lg font-semibold tracking-wide">Melody Apps</div>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full overflow-hidden bg-white/5 flex-shrink-0">
+          <img src="./logosmall.png" alt="Melody Apps logo" class="w-full h-full object-cover"/>
+        </div>
+        <div class="text-lg font-semibold tracking-wide">Melody Apps</div>
+      </div>
       <div class="space-x-6 text-sm">
-        <a href="#about" class="hover:text-indigo-400 transition">About</a>
-        <a href="#services" class="hover:text-indigo-400 transition">Services</a>
-        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+        <a href="#about" class="hover:text-indigo-400 transition py-7 px-2">About</a>
+        <a href="#services" class="hover:text-indigo-400 transition py-7 px-2">Services</a>
+        <a href="#contact" class="hover:text-indigo-400 transition py-7 px-2">Contact</a>
       </div>
     </div>
   </nav>
@@ -111,14 +149,14 @@
     </div>
   </section>
 
-  <!-- About Us (Solid) -->
-  <section id="about" class="bg-slate-950 py-24">
+  <!-- About Us (Frosted Glass) -->
+  <section id="about" class="frosted-glass py-24">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl font-semibold mb-6">About Us</h2>
       <p class="text-slate-300 leading-relaxed text-lg">
         We are a full stack software company focused on building modern web applications
         and creative digital tools. Our work spans SaaS platforms, custom business systems,
-        and music-inspired software that brings together logic and artistry.
+        and music-inspired software that brings people together.
       </p>
     </div>
   </section>
@@ -131,7 +169,7 @@
         <div>
           <h3 class="text-xl font-semibold mb-3">Full Stack Development</h3>
           <p class="text-slate-200 text-sm">
-            Scalable applications using Node.js, React, Next.js and modern cloud infrastructure.
+            Scalable applications using Node.js, React, Next.js, PHP and modern cloud infrastructure.
           </p>
         </div>
         <div>
@@ -150,8 +188,8 @@
     </div>
   </section>
 
-  <!-- Contact (Solid) -->
-  <section id="contact" class="bg-slate-950 py-24">
+  <!-- Contact (Frosted Glass) -->
+  <section id="contact" class="frosted-glass py-24">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="text-3xl font-semibold mb-6">Let’s Build Something Great</h2>
       <p class="text-slate-300 mb-8">
