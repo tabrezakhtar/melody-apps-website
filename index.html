@@ -15,6 +15,11 @@
   <link rel="manifest" href="./site.webmanifest">
   <meta name="theme-color" content="#0f172a">
 
+  <!-- Google Fonts: Merriweather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,6 +29,13 @@
   <style>
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Global font: Merriweather (Google Fonts) */
+    body {
+      font-family: 'Merriweather', ui-serif, Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Global fixed background for body */
@@ -165,7 +177,7 @@
   </style>
 </head>
 
-<body class="bg-slate-900 text-white font-sans">
+<body class="bg-slate-900 text-white">
 
   <!-- Global video background -->
   <video class="video-bg" autoplay muted loop playsinline>
