@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melody Apps | Full Stack Web Applications & Creative Software</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Fixed background base */
+    .fixed-bg {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+
+    /* Background images */
+    .bg-hero {
+      background-image: url('https://res.cloudinary.com/dx8d5hlk1/image/upload/v1770902487/neza-dolmo--Icm9zz7O9g-unsplash_exvkvz.jpg');
+    }
+
+    .bg-alt {
+      background-image: url('https://res.cloudinary.com/dx8d5hlk1/image/upload/v1770906871/wes-hicks-MEL-jJnm7RQ-unsplash_swyx5p.jpg');
+    }
+
+    /* Overlay for contrast */
+    .fixed-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ken Burns effect (hero only) */
+    @keyframes kenburns {
+      0% {
+        transform: scale(1) translateY(0);
+      }
+      50% {
+        transform: scale(1.08) translateY(-10px);
+      }
+      100% {
+        transform: scale(1.15) translateY(0);
+      }
+    }
+
+    .kenburns::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: inherit;
+      background-size: cover;
+      background-position: center;
+      animation: kenburns 40s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    section {
+      scroll-margin-top: 80px;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-white font-sans">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-lg font-semibold tracking-wide">Melody Apps</div>
+      <div class="space-x-6 text-sm">
+        <a href="#about" class="hover:text-indigo-400 transition">About</a>
+        <a href="#services" class="hover:text-indigo-400 transition">Services</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="fixed-bg bg-hero kenburns min-h-screen flex items-center justify-center text-center">
+    <div class="content max-w-3xl px-6">
+      <h1 class="hero-item text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        Creative Web Applications, Built Properly
+      </h1>
+      <p class="hero-item text-lg md:text-xl text-slate-200 mb-8">
+        Melody Apps creates full stack web software with Node.js, Next.js and React -
+        blending engineering precision with creative thinking.
+      </p>
+      <div class="hero-item">
+        <a href="#contact"
+           class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40">
+          Work With Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us (Solid) -->
+  <section id="about" class="bg-slate-950 py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold mb-6">About Us</h2>
+      <p class="text-slate-300 leading-relaxed text-lg">
+        We are a full stack software company focused on building modern web applications
+        and creative digital tools. Our work spans SaaS platforms, custom business systems,
+        and music-inspired software that brings together logic and artistry.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services (Second Fixed Background) -->
+  <section id="services" class="fixed-bg bg-alt min-h-[70vh] flex items-center">
+    <div class="content max-w-5xl mx-auto px-6 py-24">
+      <h2 class="text-3xl font-semibold text-center mb-12">What We Do</h2>
+      <div class="grid md:grid-cols-3 gap-10 text-center">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Full Stack Development</h3>
+          <p class="text-slate-200 text-sm">
+            Scalable applications using Node.js, React, Next.js and modern cloud infrastructure.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Creative Software</h3>
+          <p class="text-slate-200 text-sm">
+            Music-driven and experimental projects where design and technology meet.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Custom Platforms</h3>
+          <p class="text-slate-200 text-sm">
+            Bespoke systems tailored to specific workflows and product ideas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (Solid) -->
+  <section id="contact" class="bg-slate-950 py-24">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold mb-6">Let’s Build Something Great</h2>
+      <p class="text-slate-300 mb-8">
+        If you are looking for a reliable technical partner to bring an idea to life,
+        we would love to hear from you.
+      </p>
+      <a href="mailto:hello@melodyapps.co.uk"
+         class="bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-full transition shadow-lg shadow-indigo-900/40">
+        hello@melodyapps.co.uk
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-slate-400 text-sm">
+    © 2026 Melody Apps. All rights reserved.
+  </footer>
+
+  <!-- GSAP Hero Animation -->
+  <script>
+    gsap.from(".hero-item", {
+      opacity: 0,
+      y: 40,
+      duration: 1.2,
+      ease: "power3.out",
+      stagger: 0.25
+    });
+  </script>
+
+</body>
+</html>
