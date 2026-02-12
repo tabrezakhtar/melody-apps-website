@@ -108,6 +108,43 @@
         background: rgba(2, 6, 23, 0.85) !important;
       }
     }
+
+    /* Header link separators without affecting header height */
+    .nav-link { position: relative; display: inline-flex; align-items: center; }
+    .nav-link + .nav-link::before {
+      content: "";
+      position: absolute;
+      /* center the line inside the parent `space-x-6` gap (half of 1.5rem = 0.75rem) */
+      left: -0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1.5rem; /* slightly taller for better visual centering */
+      width: 1px;
+      background: rgba(148,163,184,0.45); /* slate-400 translucent */
+      pointer-events: none;
+    }
+
+    /* Mobile drawer (slide-in from right) */
+    #mobile-drawer {
+      transform: translateX(100%);
+      transition: transform 300ms cubic-bezier(.2,.9,.2,1);
+    }
+    #mobile-drawer.open {
+      transform: translateX(0);
+    }
+    #drawer-backdrop {
+      transition: opacity 300ms cubic-bezier(.2,.9,.2,1);
+      opacity: 0;
+      pointer-events: none;
+    }
+    #drawer-backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Hide drawer elements on desktop */
+    @media (min-width: 768px) {
+      #mobile-drawer, #drawer-backdrop { display: none !important; }
+    }
   </style>
 </head>
 
@@ -115,34 +152,61 @@
 
   <!-- Navigation -->
   <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full overflow-hidden bg-white/5 flex-shrink-0">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 md:py-2 flex justify-between items-center">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-white/5 flex-shrink-0">
           <img src="./logosmall.png" alt="Melody Apps logo" class="w-full h-full object-cover"/>
         </div>
-        <div class="text-lg font-semibold tracking-wide">Melody Apps</div>
+        <div class="text-base sm:text-lg font-semibold tracking-wide">Melody Apps</div>
       </div>
-      <div class="space-x-6 text-sm">
-        <a href="#about" class="hover:text-indigo-400 transition py-7 px-2">About</a>
-        <a href="#services" class="hover:text-indigo-400 transition py-7 px-2">Services</a>
-        <a href="#contact" class="hover:text-indigo-400 transition py-7 px-2">Contact</a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex space-x-6 text-sm">
+        <a href="#about" class="nav-link uppercase hover:text-indigo-400 transition px-4">About</a>
+        <a href="#services" class="nav-link uppercase hover:text-indigo-400 transition px-4">Services</a>
+        <a href="#contact" class="nav-link uppercase hover:text-indigo-400 transition px-4">Contact</a>
       </div>
+
+      <!-- Mobile: hamburger button -->
+      <button id="nav-toggle" aria-label="Open menu" aria-expanded="false" class="md:hidden p-2 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <svg class="w-6 h-6 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile drawer (off-canvas) -->
+  <div id="mobile-drawer" class="fixed inset-y-0 right-0 w-64 max-w-[80%] bg-slate-900/95 backdrop-blur-md shadow-xl z-50 md:hidden" aria-hidden="true">
+    <div class="p-6 flex flex-col gap-3">
+      <!-- Close button -->
+      <div class="flex justify-end mb-2">
+        <button id="drawer-close" aria-label="Close menu" class="p-2 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg class="w-6 h-6 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <a href="#about" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">About</a>
+      <a href="#services" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">Services</a>
+      <a href="#contact" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">Contact</a>
+    </div>
+  </div>
+  <div id="drawer-backdrop" class="fixed inset-0 bg-black/40 z-40 md:hidden" aria-hidden="true"></div>
+
   <!-- Hero -->
   <section class="fixed-bg bg-hero kenburns min-h-screen flex items-center justify-center text-center">
-    <div class="content max-w-3xl px-6">
-      <h1 class="hero-item text-5xl md:text-6xl font-bold mb-6 leading-tight">
+    <div class="content max-w-3xl px-4 sm:px-6">
+      <h1 class="hero-item text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
         Creative Web Applications, Built Properly
       </h1>
-      <p class="hero-item text-lg md:text-xl text-slate-200 mb-8">
+      <p class="hero-item text-base sm:text-lg md:text-xl text-slate-200 mb-6 sm:mb-8 px-2">
         Melody Apps creates full stack web software with Node.js, Next.js and React -
         blending engineering precision with creative thinking.
       </p>
       <div class="hero-item">
         <a href="#contact"
-           class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40">
+           class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base">
           Work With Us
         </a>
       </div>
@@ -150,10 +214,10 @@
   </section>
 
   <!-- About Us (Frosted Glass) -->
-  <section id="about" class="frosted-glass py-24">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-semibold mb-6">About Us</h2>
-      <p class="text-slate-300 leading-relaxed text-lg">
+  <section id="about" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">About Us</h2>
+      <p class="text-slate-300 leading-relaxed text-base sm:text-lg">
         We are a full stack software company focused on building modern web applications
         and creative digital tools. Our work spans SaaS platforms, custom business systems,
         and music-inspired software that brings people together.
@@ -162,24 +226,24 @@
   </section>
 
   <!-- Services (Second Fixed Background) -->
-  <section id="services" class="fixed-bg bg-alt min-h-[70vh] flex items-center">
-    <div class="content max-w-5xl mx-auto px-6 py-24">
-      <h2 class="text-3xl font-semibold text-center mb-12">What We Do</h2>
-      <div class="grid md:grid-cols-3 gap-10 text-center">
-        <div>
-          <h3 class="text-xl font-semibold mb-3">Full Stack Development</h3>
+  <section id="services" class="fixed-bg bg-alt min-h-[60vh] sm:min-h-[70vh] flex items-center">
+    <div class="content max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10 md:mb-12">What We Do</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 text-center">
+        <div class="p-4 sm:p-0">
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Full Stack Development</h3>
           <p class="text-slate-200 text-sm">
             Scalable applications using Node.js, React, Next.js, PHP and modern cloud infrastructure.
           </p>
         </div>
-        <div>
-          <h3 class="text-xl font-semibold mb-3">Creative Software</h3>
+        <div class="p-4 sm:p-0">
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Creative Software</h3>
           <p class="text-slate-200 text-sm">
             Music-driven and experimental projects where design and technology meet.
           </p>
         </div>
-        <div>
-          <h3 class="text-xl font-semibold mb-3">Custom Platforms</h3>
+        <div class="p-4 sm:p-0">
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Custom Platforms</h3>
           <p class="text-slate-200 text-sm">
             Bespoke systems tailored to specific workflows and product ideas.
           </p>
@@ -189,22 +253,22 @@
   </section>
 
   <!-- Contact (Frosted Glass) -->
-  <section id="contact" class="frosted-glass py-24">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-semibold mb-6">Let’s Build Something Great</h2>
-      <p class="text-slate-300 mb-8">
+  <section id="contact" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Let's Build Something Great</h2>
+      <p class="text-slate-300 mb-6 sm:mb-8 text-sm sm:text-base">
         If you are looking for a reliable technical partner to bring an idea to life,
         we would love to hear from you.
       </p>
       <a href="mailto:hello@melodyapps.co.uk"
-         class="bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-full transition shadow-lg shadow-indigo-900/40">
+         class="inline-block bg-indigo-600 hover:bg-indigo-500 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base break-all sm:break-normal">
         hello@melodyapps.co.uk
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-slate-400 text-sm">
+  <footer class="bg-slate-900 border-t border-slate-800 py-4 sm:py-6 text-center text-slate-400 text-xs sm:text-sm px-4">
     © 2026 Melody Apps. All rights reserved.
   </footer>
 
@@ -217,6 +281,42 @@
       ease: "power3.out",
       stagger: 0.25
     });
+  </script>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById('nav-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const drawerClose = document.getElementById('drawer-close');
+      if (!toggle || !drawer || !backdrop) return;
+
+      function openDrawer(){
+        drawer.classList.add('open');
+        backdrop.classList.add('visible');
+        toggle.setAttribute('aria-expanded','true');
+        drawer.setAttribute('aria-hidden','false');
+        // focus close button
+        if(drawerClose) drawerClose.focus();
+      }
+      function closeDrawer(){
+        drawer.classList.remove('open');
+        backdrop.classList.remove('visible');
+        toggle.setAttribute('aria-expanded','false');
+        drawer.setAttribute('aria-hidden','true');
+        toggle.focus();
+      }
+
+      toggle.addEventListener('click', ()=>{
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        open ? closeDrawer() : openDrawer();
+      });
+      if(drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeDrawer(); });
+      // close on navigation
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    })();
   </script>
 
 </body>
