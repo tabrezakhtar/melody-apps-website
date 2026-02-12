@@ -286,12 +286,12 @@
         we would love to hear from you.
       </p>
       
-      <!-- Netlify Form -->
-      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="max-w-xl mx-auto space-y-4 sm:space-y-5">
-        <!-- Honeypot field for spam protection -->
-        <p class="hidden">
+      <!-- Netlify Form with spam protection -->
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify-recaptcha class="max-w-xl mx-auto space-y-4 sm:space-y-5">
+        <!-- Honeypot field (hidden from humans, visible to bots) -->
+        <p class="hidden" aria-hidden="true">
           <label>
-            Don't fill this out if you're human: <input name="bot-field" />
+            Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" />
           </label>
         </p>
         
@@ -330,6 +330,9 @@
             placeholder="Tell us about your project..."
           ></textarea>
         </div>
+        
+        <!-- Netlify reCAPTCHA v2 -->
+        <div data-netlify-recaptcha="true"></div>
         
         <div class="text-center pt-2">
           <button 
