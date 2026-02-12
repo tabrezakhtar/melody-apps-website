@@ -279,16 +279,72 @@
 
   <!-- Contact (Frosted Glass) -->
   <section id="contact" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Let's Build Something Great</h2>
-      <p class="text-slate-300 mb-6 sm:mb-8 text-sm sm:text-base">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-center">Let's Build Something Great</h2>
+      <p class="text-slate-300 mb-6 sm:mb-8 text-sm sm:text-base text-center">
         If you are looking for a reliable technical partner to bring an idea to life,
         we would love to hear from you.
       </p>
-      <a href="mailto:hello@melodyapps.co.uk"
-         class="inline-block bg-indigo-600 hover:bg-indigo-500 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base break-all sm:break-normal">
-        hello@melodyapps.co.uk
-      </a>
+      
+      <!-- Netlify Form -->
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="max-w-xl mx-auto space-y-4 sm:space-y-5">
+        <!-- Honeypot field for spam protection -->
+        <p class="hidden">
+          <label>
+            Don't fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
+        
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-300 mb-2 text-left">Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 transition"
+            placeholder="Your name"
+          >
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-300 mb-2 text-left">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 transition"
+            placeholder="your@email.com"
+          >
+        </div>
+        
+        <div>
+          <label for="message" class="block text-sm font-medium text-slate-300 mb-2 text-left">Message</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="5" 
+            required 
+            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 resize-none transition"
+            placeholder="Tell us about your project..."
+          ></textarea>
+        </div>
+        
+        <div class="text-center pt-2">
+          <button 
+            type="submit" 
+            class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base cursor-pointer"
+          >
+            Send Message
+          </button>
+        </div>
+      </form>
+      
+      <p class="text-center mt-6 text-slate-400 text-xs sm:text-sm">
+        Or email us directly at:
+        <span id="deferred-email" class="text-indigo-400 hover:text-indigo-300 underline opacity-0" data-user="melodyapps.uk" data-domain="gmail.com" aria-live="polite"></span>
+      </p>
     </div>
   </section>
 
@@ -346,6 +402,24 @@
       // close on navigation
       drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
     })();
+  </script>
+
+  <script>
+    // Reveal contact email after 2 seconds (obfuscation to deter scrapers)
+    document.addEventListener('DOMContentLoaded', function () {
+      const placeholder = document.getElementById('deferred-email');
+      if (!placeholder) return;
+      setTimeout(() => {
+        const user = placeholder.getAttribute('data-user') || '';
+        const domain = placeholder.getAttribute('data-domain') || '';
+        const email = user + '@' + domain;
+        const a = document.createElement('a');
+        a.href = 'mailto:' + email;
+        a.className = 'text-indigo-400 hover:text-indigo-300 underline';
+        a.textContent = email;
+        placeholder.replaceWith(a);
+      }, 2000);
+    });
   </script>
 
 </body>
