@@ -302,62 +302,18 @@
         Drop us a message to get started.
       </p>
       
-      <!-- Netlify Form with spam protection -->
+      <!-- Netlify Form with spam protection (commented out) -->
+      <!--
       <form name="contact" method="POST" data-netlify="true" netlify-recaptcha class="max-w-xl mx-auto space-y-4 sm:space-y-5">
-        
-        <div>
-          <label for="name" class="block text-sm font-medium text-slate-300 mb-2 text-left">Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required 
-            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 transition"
-            placeholder="Your name"
-          >
-        </div>
-        
-        <div>
-          <label for="email" class="block text-sm font-medium text-slate-300 mb-2 text-left">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            required 
-            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 transition"
-            placeholder="your@email.com"
-          >
-        </div>
-        
-        <div>
-          <label for="message" class="block text-sm font-medium text-slate-300 mb-2 text-left">Message</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            rows="5" 
-            required 
-            class="w-full px-4 py-2.5 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-slate-400 resize-none transition"
-            placeholder="Tell us about your project..."
-          ></textarea>
-        </div>
-        
-        <!-- Netlify reCAPTCHA v2 -->
-        <div data-netlify-recaptcha="true"></div>
-        
-        <div class="text-center pt-2">
-          <button 
-            type="submit" 
-            class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base cursor-pointer"
-          >
-            Send Message
-          </button>
-        </div>
+        (form preserved here but commented out)
       </form>
+      -->
       
-      <p class="text-center mt-6 text-slate-400 text-xs sm:text-sm">
-        Or email us directly at:
-        <span id="deferred-email" class="text-indigo-400 hover:text-indigo-300 underline opacity-0" data-user="hello" data-domain="melodyapps.co.uk" aria-live="polite"></span>
-      </p>
+      <div class="text-center mt-8">
+        <p>
+          <span id="deferred-email" class="inline-block opacity-0" data-user="hello" data-domain="melodyapps.co.uk" aria-live="polite"></span>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -428,7 +384,8 @@
         const email = user + '@' + domain;
         const a = document.createElement('a');
         a.href = 'mailto:' + email;
-        a.className = 'text-indigo-400 hover:text-indigo-300 underline';
+        a.className = 'text-indigo-400 hover:text-indigo-300 underline text-xl sm:text-2xl md:text-3xl font-semibold inline-block';
+        a.setAttribute('aria-label', 'Email Melody Apps');
         a.textContent = email;
         placeholder.replaceWith(a);
       }, 2000);
