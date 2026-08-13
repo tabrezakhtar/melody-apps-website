@@ -20,6 +20,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
 
+  <!-- Boxicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css">
+
+  <!-- PhotoSwipe -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css">
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -174,6 +180,39 @@
     @media (min-width: 768px) {
       #mobile-drawer, #drawer-backdrop { display: none !important; }
     }
+
+    /* Projects gallery */
+    .project-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid rgba(51, 65, 85, 0.95);
+      opacity: 0.72;
+      transform: translateZ(0);
+      transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .project-thumb:hover,
+    .project-thumb.is-active {
+      opacity: 1;
+      transform: translateY(-2px);
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.25), 0 14px 28px rgba(15, 23, 42, 0.35);
+    }
+
+    .project-thumb > img {
+      position: absolute;
+      inset: 0;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   </style>
 </head>
 
@@ -199,6 +238,7 @@
         <div class="flex space-x-6 text-sm">
           <a href="#about" class="nav-link uppercase hover:text-indigo-400 transition px-4">About</a>
           <a href="#services" class="nav-link uppercase hover:text-indigo-400 transition px-4">Services</a>
+          <a href="#projects" class="nav-link uppercase hover:text-indigo-400 transition px-4">Projects</a>
           <a href="#contact" class="nav-link uppercase hover:text-indigo-400 transition px-4">Contact</a>
         </div>
         <div class="flex items-center gap-2">
@@ -233,6 +273,7 @@
       </div>
       <a href="#about" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">About</a>
       <a href="#services" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">Services</a>
+      <a href="#projects" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">Projects</a>
       <a href="#contact" class="uppercase px-4 py-3 rounded-md hover:bg-indigo-600/20 hover:text-indigo-400 transition text-center">Contact</a>
     </div>
   </div>
@@ -294,6 +335,132 @@
             Bespoke systems tailored to specific workflows and product ideas.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div id="project-gallery" class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
+        <div class="space-y-4 sm:space-y-5">
+          <div class="rounded-[2rem] border border-slate-700/70 bg-slate-950/70 shadow-2xl shadow-black/30 overflow-hidden">
+          <a
+            id="project-main-link"
+            href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png"
+            class="group block relative"
+            aria-label="Open rifftales gallery"
+          >
+            <img
+              id="project-main-image"
+              src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png"
+              alt="rifftales landing page"
+              class="w-full aspect-[4/3] lg:aspect-[16/10] object-cover"
+              loading="eager"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent opacity-80 group-hover:opacity-100 transition"></div>
+            <div class="absolute left-4 right-4 bottom-4 flex items-center justify-between gap-4 text-white">
+              <div>
+                <p class="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-indigo-200/90 mb-1">Rifftales</p>
+                <h3 class="text-xl sm:text-2xl font-semibold">Musician gear community platform</h3>
+              </div>
+            </div>
+          </a>
+          </div>
+
+          <div class="rounded-[1.5rem] border border-slate-700/70 bg-slate-950/45 px-2 sm:px-3 py-2 sm:py-3 shadow-xl shadow-black/10">
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 sm:gap-3" aria-label="Project thumbnails">
+              <a class="project-thumb is-active" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png" data-alt="rifftales landing page">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png" alt="rifftales landing page" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_1_ixoppa.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_1_ixoppa.png" data-alt="rifftales screenshot 1">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_1_ixoppa.png" alt="rifftales screenshot 1" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_2_nklksx.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_2_nklksx.png" data-alt="rifftales screenshot 2">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_2_nklksx.png" alt="rifftales screenshot 2" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1769166212/edit_cit2nv.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1769166212/edit_cit2nv.png" data-alt="rifftales edit screen">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1769166212/edit_cit2nv.png" alt="rifftales edit screen" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_4_jbjvsa.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_4_jbjvsa.png" data-alt="rifftales screenshot 4">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_4_jbjvsa.png" alt="rifftales screenshot 4" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_5_btfnqh.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_5_btfnqh.png" data-alt="rifftales screenshot 5">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_5_btfnqh.png" alt="rifftales screenshot 5" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_3_fkuwru.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_3_fkuwru.png" data-alt="rifftales screenshot 3">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_3_fkuwru.png" alt="rifftales screenshot 3" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774274890/lighthouse-rt_j5p90x.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774274890/lighthouse-rt_j5p90x.png" data-alt="rifftales lighthouse view">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774274890/lighthouse-rt_j5p90x.png" alt="rifftales lighthouse view" loading="lazy">
+              </a>
+              <a class="project-thumb" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/v1775234049/passwordless_pn3fl7.png" data-full="https://res.cloudinary.com/dx8d5hlk1/image/upload/v1775234049/passwordless_pn3fl7.png" data-alt="rifftales passwordless login screen">
+                <img src="https://res.cloudinary.com/dx8d5hlk1/image/upload/v1775234049/passwordless_pn3fl7.png" alt="rifftales passwordless login screen" loading="lazy">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="project-lightbox-items" class="hidden" aria-hidden="true">
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774893136/landing_f8yrtf.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales landing page"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_1_ixoppa.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales screenshot 1"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_2_nklksx.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales screenshot 2"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1769166212/edit_cit2nv.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales edit screen"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410146/screenshot-rocks_4_jbjvsa.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales screenshot 4"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_5_btfnqh.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales screenshot 5"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1765410145/screenshot-rocks_3_fkuwru.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales screenshot 3"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/f_auto/v1774274890/lighthouse-rt_j5p90x.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales lighthouse view"></a>
+          <a class="project-lightbox-item" href="https://res.cloudinary.com/dx8d5hlk1/image/upload/v1775234049/passwordless_pn3fl7.png" data-pswp-width="1600" data-pswp-height="1200" data-alt="rifftales passwordless login screen"></a>
+        </div>
+
+        <aside class="lg:pt-2">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-slate-400 mb-1">Featured Work</p>
+              <h3 class="text-2xl sm:text-3xl font-semibold">rifftales</h3>
+            </div>
+            <a href="https://www.rifftales.net" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-200 hover:text-white hover:bg-indigo-500/20 transition">
+              <i class="bx bx-link-external"></i>
+              Visit site
+            </a>
+          </div>
+
+          <div class="space-y-5 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p>
+              I play the guitar as a hobby and enjoy collecting different types of guitars and gear.
+              I also like seeing what other people have in their collection.
+              This <strong>full stack app</strong> is my take on building a supportive place for musicians to upload,
+              browse, and show off their musical equipment.
+            </p>
+            <p>
+              The app has <strong>social media elements</strong>: users can like, comment, and discuss each other's gear,
+              helping build a community of musicians and gear enthusiasts who love sharing their setups and getting
+              inspiration from others.
+            </p>
+            <div>
+              <p class="font-semibold text-slate-100 mb-2">Technical details:</p>
+              <ul class="space-y-2 pl-5 list-disc marker:text-indigo-400">
+                <li>Backend: Node.js + Express with Mongoose and MongoDB</li>
+                <li>Authentication: Custom JWT based login (passwordless) for convenient user sign-up</li>
+                <li>Frontend: React with Context API for global state management and Tailwind CSS for fast, responsive styling</li>
+              </ul>
+            </div>
+            <p>
+              It's a passion project that combines my love for musical instruments with software development, focused on speed, usability, and bringing musicians together around the gear they love.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-2 text-xs sm:text-sm text-slate-200">
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-javascript text-base text-amber-300"></i>JavaScript</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-nodejs text-base text-emerald-300"></i>NodeJS</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-mongodb text-base text-green-300"></i>MongoDB</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-react text-base text-cyan-300"></i>React</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-tailwind-css text-base text-sky-300"></i>Tailwind CSS</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-html5 text-base text-orange-300"></i>HTML5</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-git text-base text-red-300"></i>Git</span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-slate-800/70 px-3 py-2 border border-slate-700/70"><i class="bx bxl-visual-studio text-base text-blue-300"></i>VSCode</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
@@ -475,6 +642,121 @@
       // Always use DOMContentLoaded to ensure single execution
       document.addEventListener('DOMContentLoaded', sendHit);
     })('melody-apps-website');
+  </script>
+
+  <script type="module">
+    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#project-lightbox-items',
+      children: 'a.project-lightbox-item',
+      loop: true,
+      arrowKeys: true,
+      allowPanToNext: true,
+      pinchToClose: true,
+      closeOnVerticalDrag: true,
+      bgOpacity: 0.94,
+      pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.js')
+    });
+
+    lightbox.init();
+
+    const mainLink = document.getElementById('project-main-link');
+    const mainImage = document.getElementById('project-main-image');
+    const projectThumbs = Array.from(document.querySelectorAll('.project-thumb'));
+    const projectLightboxItems = Array.from(document.querySelectorAll('.project-lightbox-item'));
+    let currentProjectIndex = 0;
+
+    function syncMainImageDimensions(sourceImage) {
+      if (!mainLink || !sourceImage) return;
+
+      const width = sourceImage.naturalWidth || sourceImage.width || 1600;
+      const height = sourceImage.naturalHeight || sourceImage.height || 900;
+
+      mainLink.setAttribute('data-pswp-width', String(width));
+      mainLink.setAttribute('data-pswp-height', String(height));
+    }
+
+    function syncSlideDimensions(slide, sourceImage) {
+      if (!slide || !sourceImage) return;
+
+      const width = sourceImage.naturalWidth || sourceImage.width || 1600;
+      const height = sourceImage.naturalHeight || sourceImage.height || 900;
+
+      slide.setAttribute('data-pswp-width', String(width));
+      slide.setAttribute('data-pswp-height', String(height));
+    }
+
+    if (mainImage) {
+      if (mainImage.complete) {
+        syncMainImageDimensions(mainImage);
+      }
+
+      mainImage.addEventListener('load', () => {
+        syncMainImageDimensions(mainImage);
+      });
+    }
+
+    if (mainLink) {
+      mainLink.addEventListener('click', () => {
+        syncMainImageDimensions(mainImage);
+      }, true);
+    }
+
+    projectThumbs.forEach((thumb, index) => {
+      const thumbImage = thumb.querySelector('img');
+      const slide = projectLightboxItems[index];
+
+      if (!thumbImage || !slide) return;
+
+      if (thumbImage.complete) {
+        syncSlideDimensions(slide, thumbImage);
+      }
+
+      thumbImage.addEventListener('load', () => {
+        syncSlideDimensions(slide, thumbImage);
+      });
+    });
+
+    function setActiveThumb(thumb) {
+      if (!mainLink || !mainImage || !thumb) return;
+
+      const fullSrc = thumb.getAttribute('data-full') || thumb.getAttribute('href');
+      const alt = thumb.getAttribute('data-alt') || '';
+      const thumbImage = thumb.querySelector('img');
+
+      if (fullSrc) {
+        mainImage.src = fullSrc;
+        mainImage.alt = alt;
+        mainLink.href = fullSrc;
+        if (thumbImage && thumbImage.complete) {
+          syncMainImageDimensions(thumbImage);
+        }
+      }
+
+      currentProjectIndex = projectThumbs.indexOf(thumb);
+      if (currentProjectIndex >= 0 && thumbImage) {
+        syncSlideDimensions(projectLightboxItems[currentProjectIndex], thumbImage);
+      }
+      projectThumbs.forEach((item) => item.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+    }
+
+    if (mainLink) {
+      mainLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        const slide = projectLightboxItems[currentProjectIndex] || projectLightboxItems[0];
+        if (slide) slide.click();
+      });
+    }
+
+    projectThumbs.forEach((thumb) => {
+      thumb.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setActiveThumb(thumb);
+      });
+    });
   </script>
 
 </body>
