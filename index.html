@@ -33,6 +33,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
+    :root {
+      --masthead-dot-radius: 1px;
+      --masthead-dot-gap: 3px;
+      --masthead-dot-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .services-text-block {
+      display: inline-block;
+      background: rgba(15, 23, 42, 0.35);
+      border-radius: 0.375rem;
+      padding: 0.25rem 0.5rem;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -53,7 +68,7 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      opacity: 0.3;
+      opacity: 0;
       background: #000;
     }
 
@@ -67,11 +82,28 @@
       object-fit: cover;
       z-index: -2;
       pointer-events: none;
+      overflow: hidden;
       /* GPU acceleration */
       transform: translateZ(0);
       will-change: transform;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+    }
+
+    .video-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: radial-gradient(
+        circle,
+        var(--masthead-dot-color) 0,
+        var(--masthead-dot-color) var(--masthead-dot-radius),
+        transparent calc(var(--masthead-dot-radius) + 0.25px)
+      );
+      background-size: var(--masthead-dot-gap) var(--masthead-dot-gap);
+      background-repeat: repeat;
+      pointer-events: none;
     }
 
     /* Fixed background base */
@@ -93,8 +125,15 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
       z-index: 0;
+      background-image: radial-gradient(
+        circle,
+        var(--masthead-dot-color) 0,
+        var(--masthead-dot-color) var(--masthead-dot-radius),
+        transparent calc(var(--masthead-dot-radius) + 0.25px)
+      );
+      background-size: var(--masthead-dot-gap) var(--masthead-dot-gap);
+      background-repeat: repeat;
     }
 
     .content {
@@ -315,23 +354,23 @@
   <!-- Services (Second Fixed Background) -->
   <section id="services" class="fixed-bg bg-alt min-h-[60vh] sm:min-h-[70vh] flex items-center">
     <div class="content max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
-      <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10 md:mb-12">What We Do</h2>
+      <h2 class="services-text-block block w-fit mx-auto text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10 md:mb-12">What We Do</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 text-center">
-        <div class="p-4 sm:p-0">
-          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Full Stack Development</h3>
-          <p class="text-slate-200 text-sm">
+        <div class="p-4 sm:p-0 services-text-block">
+          <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Full Stack Development</h3>
+          <p class="text-sm p-1">
             Scalable applications using Node.js, PHP, Python, React, Next.js and modern cloud infrastructure.
           </p>
         </div>
-        <div class="p-4 sm:p-0">
-          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Creative Software</h3>
-          <p class="text-slate-200 text-sm">
+        <div class="p-4 sm:p-0 services-text-block">
+          <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Creative Software</h3>
+          <p class="text-sm p-1">
             Innovative and experimental projects where design and technology meet.
           </p>
         </div>
-        <div class="p-4 sm:p-0">
-          <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Custom Platforms</h3>
-          <p class="text-slate-200 text-sm">
+        <div class="p-4 sm:p-0 services-text-block">
+          <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Custom Platforms</h3>
+          <p class="text-sm p-1">
             Bespoke systems tailored to specific workflows and product ideas.
           </p>
         </div>
@@ -467,17 +506,17 @@
 
   <!-- Contact (Frosted Glass) -->
   <section id="contact" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-center">Let's Build Something Great Together</h2>
-      <p class="text-slate-300 mb-4 sm:mb-6 text-sm sm:text-base text-center">
-        Have an idea?  We'd love to hear about it.
-      </p>
-      <p class="text-slate-300 mb-4 sm:mb-6 text-sm sm:text-base text-center">
-        Whether it's a small feature or an ambitious platform, <br />we're excited to help bring your vision to life.
-      </p>
-      <p class="text-slate-300 mb-6 sm:mb-8 text-sm sm:text-base text-center">
-        Drop us a message to get started.
-      </p>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12">
+        <div>
+          <p class="text-xs uppercase tracking-[0.28em] text-indigo-300/90 mb-3">Start a conversation</p>
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Let's Build Something Great Together</h2>
+          <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p>Have an idea? We'd love to hear about it.</p>
+            <p>Whether it's a small feature or an ambitious platform, we're excited to help bring your vision to life.</p>
+            <p class="text-slate-200">Drop us a message to get started.</p>
+          </div>
+        </div>
       
       <!--
       Netlify form is currently disabled.
@@ -532,11 +571,13 @@
       </form>
       -->
 
-      <div class="mt-2 sm:mt-4 max-w-xl mx-auto rounded-2xl border border-indigo-400/40 bg-indigo-500/10 px-5 py-5 sm:px-6 sm:py-6 text-center shadow-lg shadow-indigo-900/30">
-        <p class="text-slate-200 text-sm sm:text-base mb-2">Email us directly:</p>
-        <p class="text-lg sm:text-2xl font-bold tracking-wide">
+        <div class="rounded-2xl border border-slate-700/80 bg-slate-950/55 px-5 py-6 sm:px-7 sm:py-8 shadow-xl shadow-black/20">
+          <p class="text-xs uppercase tracking-[0.24em] text-slate-400 mb-3">Prefer email?</p>
+          <p class="text-slate-200 text-sm sm:text-base mb-3">Email us directly:</p>
+          <p class="text-lg sm:text-2xl font-bold tracking-wide break-words">
           <span id="deferred-email" class="text-indigo-300 opacity-0" data-user="hello" data-domain="melodyapps.co.uk" aria-live="polite"></span>
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   </section>
