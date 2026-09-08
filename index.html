@@ -26,11 +26,11 @@
   <!-- PhotoSwipe -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css">
 
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root {
@@ -46,6 +46,32 @@
       padding: 0.25rem 0.5rem;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
+    }
+
+    .site-animation-delay-1 {
+      animation-delay: 120ms;
+    }
+
+    .site-animation-delay-2 {
+      animation-delay: 240ms;
+    }
+
+    .site-animation-delay-3 {
+      animation-delay: 360ms;
+    }
+
+    .scroll-animate {
+      opacity: 1;
+    }
+
+    .scroll-animations-enabled .scroll-animate {
+      opacity: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-animations-enabled .scroll-animate {
+        opacity: 1;
+      }
     }
 
     html {
@@ -324,13 +350,13 @@
       <source src="https://res.cloudinary.com/dx8d5hlk1/video/upload/v1770912583/19463241-sd_960_540_25fps_tnzdg7.mp4" type="video/mp4">
     </video>
     <div class="content max-w-3xl px-4 sm:px-6">
-      <h1 class="hero-item text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+      <h1 class="hero-item animate__animated animate__fadeInUp text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
         Let's Bring Your Vision to Life
       </h1>
-      <p class="hero-item text-base sm:text-lg md:text-xl text-slate-200 mb-6 sm:mb-8 px-2">
+      <p class="hero-item animate__animated animate__fadeInUp site-animation-delay-1 text-base sm:text-lg md:text-xl text-slate-200 mb-6 sm:mb-8 px-2">
         Whether you have a big idea or a simple project in mind, we're here to help. We build custom web applications from start to finish, making the process easy and collaborative every step of the way.
       </p>
-      <div class="hero-item">
+      <div class="hero-item animate__animated animate__fadeInUp site-animation-delay-2">
         <a href="#contact"
            class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition shadow-lg shadow-indigo-900/40 text-sm sm:text-base">
           Work With Us
@@ -341,7 +367,7 @@
 
   <!-- About Us (Frosted Glass) -->
   <section id="about" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center scroll-animate" data-animation="animate__fadeInUp">
       <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">About Us</h2>
       <p class="text-slate-300 leading-relaxed text-base sm:text-lg">
         We're a friendly team that loves turning ideas into reality. No project is too big or too small - 
@@ -354,21 +380,21 @@
   <!-- Services (Second Fixed Background) -->
   <section id="services" class="fixed-bg bg-alt min-h-[60vh] sm:min-h-[70vh] flex items-center">
     <div class="content max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
-      <h2 class="services-text-block block w-fit mx-auto text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10 md:mb-12">What We Do</h2>
+      <h2 class="services-text-block block w-fit mx-auto text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10 md:mb-12 scroll-animate" data-animation="animate__fadeInDown">What We Do</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 text-center">
-        <div class="p-4 sm:p-0 services-text-block">
+        <div class="p-4 sm:p-0 services-text-block scroll-animate" data-animation="animate__fadeInUp">
           <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Full Stack Development</h3>
           <p class="text-sm p-1">
             Scalable applications using Node.js, PHP, Python, React, Next.js and modern cloud infrastructure.
           </p>
         </div>
-        <div class="p-4 sm:p-0 services-text-block">
+        <div class="p-4 sm:p-0 services-text-block scroll-animate site-animation-delay-1" data-animation="animate__fadeInUp">
           <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Creative Software</h3>
           <p class="text-sm p-1">
             Innovative and experimental projects where design and technology meet.
           </p>
         </div>
-        <div class="p-4 sm:p-0 services-text-block">
+        <div class="p-4 sm:p-0 services-text-block scroll-animate site-animation-delay-2" data-animation="animate__fadeInUp">
           <h3 class="text-lg sm:text-xl font-semibold my-2 sm:mb-3">Custom Platforms</h3>
           <p class="text-sm p-1">
             Bespoke systems tailored to specific workflows and product ideas.
@@ -381,7 +407,7 @@
   <!-- Projects -->
   <section id="projects" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div id="project-gallery" class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
+      <div id="project-gallery" class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start scroll-animate" data-animation="animate__fadeIn">
         <div class="space-y-4 sm:space-y-5">
           <div class="rounded-[2rem] border border-slate-700/70 bg-slate-950/70 shadow-2xl shadow-black/30 overflow-hidden">
           <a
@@ -507,7 +533,7 @@
   <!-- Contact (Frosted Glass) -->
   <section id="contact" class="frosted-glass py-12 sm:py-16 md:py-20 lg:py-24">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12">
+      <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-12 scroll-animate" data-animation="animate__fadeInUp">
         <div>
           <p class="text-xs uppercase tracking-[0.28em] text-indigo-300/90 mb-3">Start a conversation</p>
           <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6">Let's Build Something Great Together</h2>
@@ -591,17 +617,6 @@
     </span>
   </footer>
 
-  <!-- GSAP Hero Animation -->
-  <script>
-    gsap.from(".hero-item", {
-      opacity: 0,
-      y: 40,
-      duration: 1.2,
-      ease: "power3.out",
-      stagger: 0.25
-    });
-  </script>
-
   <script>
     (function(){
       const toggle = document.getElementById('nav-toggle');
@@ -654,6 +669,29 @@
         placeholder.replaceWith(a);
       }, 2000);
     });
+  </script>
+
+  <script>
+    (function () {
+      const targets = document.querySelectorAll('.scroll-animate');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!targets.length || reduceMotion || !('IntersectionObserver' in window)) return;
+
+      document.documentElement.classList.add('scroll-animations-enabled');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const target = entry.target;
+          target.classList.add('animate__animated', target.dataset.animation || 'animate__fadeInUp');
+          observer.unobserve(target);
+        });
+      }, { threshold: 0.18 });
+
+      targets.forEach((target) => observer.observe(target));
+    })();
   </script>
 
   <script>
